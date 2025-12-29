@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carlos Miguel Aldamia | Portfolio</title>
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css ">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300 ;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --accent:#e11d48;
+  --accent2:#be123c;
+  --bg:#0b0b0f;
+  --card:rgba(255,255,255,.08);
+  --text:#e5e7eb;
+  --blur:blur(18px);
+  --glow:0 0 25px rgba(225,29,72,.45);
+}
+
+/* LIGHT MODE */
+[data-theme="light"]{
+  --bg:#f5f7fa;
+  --card:rgba(0,0,0,.06);
+  --text:#111827;
+  --glow:0 0 20px rgba(225,29,72,.35);
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:radial-gradient(circle at 10% 10%,rgba(225,29,72,.15),transparent 40%),
+             radial-gradient(circle at 90% 90%,rgba(190,18,60,.15),transparent 45%),
+             var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  transition:background .4s,color .4s;
+}
+section{padding:100px 22px;max-width:1200px;margin:auto}
+h2{font-size:2.4rem;margin-bottom:40px}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+header{
+  position:fixed;top:0;width:100%;
+  backdrop-filter:var(--blur);
+  background:rgba(0,0,0,.35);
+  z-index:1000;
+  transition:background .4s;
+}
+[data-theme="light"] header{background:rgba(255,255,255,.35)}
+nav{
+  max-width:1200px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 22px;
+}
+.logo{font-weight:800;font-size:1.4rem;color:var(--accent)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{opacity:.85;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:.3s}
+.nav-links a:hover::after{width:100%}
+
+/* THEME TOGGLE */
+#themeToggle{
+  background:none;border:none;font-size:1.4rem;color:var(--accent);
+  cursor:pointer;margin-left:14px;transition:transform .3s;
+}
+#themeToggle:hover{transform:rotate(15deg) scale(1.1)}
+
+/* HERO + INTERACTIVE IMAGE */
+#home{min-height:100vh;display:grid;place-items:center}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,6vw,4.2rem);line-height:1.1}
+.hero span{color:var(--accent)}
+.hero p{margin-top:20px;font-size:1.1rem;opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:30px;padding:14px 32px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:600;box-shadow:var(--glow);transition:.35s}
+.btn:hover{transform:translateY(-4px) scale(1.03)}
+
+.hero-img{position:relative;perspective:1000px;animation:float 6s ease-in-out infinite}
+.hero-img img{max-width:320px;border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.7);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.hero-img:hover img{transform:rotateY(-15deg) rotateX(8deg) scale(1.08);box-shadow:0 35px 80px rgba(225,29,72,.4)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+
+/* GLASS CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.card{background:var(--card);backdrop-filter:var(--blur);border-radius:20px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.4);transition:.4s}
+.card:hover{transform:translateY(-10px);box-shadow:var(--glow)}
+.card i{font-size:1.8rem;color:var(--accent);margin-bottom:12px}
+
+/* TOOLS */
+#tools h2{margin-bottom:30px}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px}
+.tool-card{text-align:center;padding:20px;background:var(--card);border-radius:16px;backdrop-filter:var(--blur);transition:.35s}
+.tool-card:hover{transform:translateY(-6px);box-shadow:var(--glow)}
+.tool-card i{font-size:2.2rem;color:var(--accent)}
+.tool-card p{margin-top:8px;font-weight:500}
+
+/* SOFT SKILLS */
+#soft h2{margin-bottom:30px}
+.soft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px}
+.soft-card{text-align:center;padding:20px;background:var(--card);border-radius:16px;backdrop-filter:var(--blur);transition:.35s}
+.soft-card:hover{transform:translateY(-6px);box-shadow:var(--glow)}
+.soft-card i{font-size:2.2rem;color:var(--accent)}
+.soft-card p{margin-top:8px;font-weight:500}
+
+/* PROJECTS : NEW PROJ-CARD STYLE (same as Pages) */
+#projects h2{margin-bottom:30px}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:35px}
+.proj-card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);transition:transform .4s,box-shadow .4s}
+.proj-card:hover{transform:translateY(-8px) scale(1.03);box-shadow:var(--glow)}
+.proj-card img{width:100%;height:200px;object-fit:cover;transition:transform .5s}
+.proj-card img:hover{transform:scale(1.05)}
+.proj-info{padding:24px}
+.proj-info h3{margin-bottom:10px}
+.proj-info p{font-size:.95rem;margin-bottom:12px;opacity:.9}
+.proj-info .tech{font-size:.8rem;color:var(--accent);font-weight:500;margin-bottom:12px}
+
+/* PAGES : SAME NEW STYLE */
+#pages h2{margin-bottom:30px}
+.pages-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:35px}
+/* re-use same .proj-card rules */
+
+/* CONTACT */
+form{display:grid;gap:16px}
+input,textarea{padding:14px;border-radius:12px;border:none;background:rgba(255,255,255,.1);color:white}
+input:focus,textarea:focus{outline:2px solid var(--accent)}
+
+/* FOOTER */
+footer{text-align:center;padding:30px;opacity:.6}
+@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}.hero-img{margin:auto}.nav-links{display:none}}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Carlos Miguel Aldamia</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#soft">Soft Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#pages">Pages</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="themeToggle" title="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+  </nav>
+</header>
+
+<section id="home">
+  <div class="hero">
+    <div>
+      <h1>Carlos Miguel <span>Aldamia</span></h1>
+      <p>Aspiring Entrepreneur • IT Student • Tech & Gaming Enthusiast</p>
+      <p><em>“Go beyond Plus Ultra.”</em></p>
+      <a class="btn" href="#projects">Explore Work <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="hero-img">
+      <img src="https://i.pravatar.cc/320?u=carlos">
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="grid">
+    <div class="card">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <h3>Education</h3>
+      <p>BS Information Technology<br>EVSU – Ormoc Campus</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-microchip"></i>
+      <h3>Tech Focus</h3>
+      <p>Hardware diagnostics, Android internals, gadget repair & optimization.</p>
+    </div>
+    <div class="card">
+      <i class="fa-solid fa-gamepad"></i>
+      <h3>Mindset</h3>
+      <p>Competitive gamer mentality applied to tech and business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =====  TOOLS & TECHNOLOGIES  ===== -->
+<section id="tools">
+  <h2>Tools & Technologies</h2>
+  <div class="tools-grid">
+    <div class="tool-card"><i class="fa-solid fa-code"></i><p>VS Code</p></div>
+    <div class="tool-card"><i class="fa-brands fa-git-alt"></i><p>Git & GitHub</p></div>
+    <div class="tool-card"><i class="fa-brands fa-windows"></i><p>Windows OS</p></div>
+    <div class="tool-card"><i class="fa-brands fa-android"></i><p>Android OS</p></div>
+    <div class="tool-card"><i class="fa-solid fa-file-word"></i><p>MS Office</p></div>
+    <div class="tool-card"><i class="fa-solid fa-film"></i><p>CapCut</p></div>
+  </div>
+</section>
+
+<!-- =====  SOFT SKILLS  ===== -->
+<section id="soft">
+  <h2>Soft Skills</h2>
+  <div class="soft-grid">
+    <div class="soft-card"><i class="fa-solid fa-brain"></i><p>Problem-solving</p></div>
+    <div class="soft-card"><i class="fa-solid fa-book-open"></i><p>Willingness to Learn</p></div>
+    <div class="soft-card"><i class="fa-solid fa-comments"></i><p>Communication</p></div>
+    <div class="soft-card"><i class="fa-solid fa-clock"></i><p>Time Management</p></div>
+    <div class="soft-card"><i class="fa-solid fa-people-arrows"></i><p>Team & Solo Work</p></div>
+  </div>
+</section>
+
+<!-- PROJECTS : NEW PROJ-CARD STYLE (same as Pages) -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <img src="https://i.pravatar.cc/400/200?u=vlog" alt="Ethical Vlogging thumbnail">
+      <div class="proj-info">
+        <h3>Ethical Vlogging Awareness Video</h3>
+        <p>An academic video project created to showcase and explain the principles of ethical vlogging, including responsible content creation, respect for privacy, honesty, and proper online behavior.</p>
+        <div class="tech">CapCut • Smartphone • Storytelling</div>
+        <a class="btn" href="https://www.facebook.com/YourVideoLinkHere" target="_blank">Watch on Facebook <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGES : SAME NEW STYLE -->
+<section id="pages">
+  <h2>Pages I Run</h2>
+  <div class="pages-grid">
+    <div class="proj-card">
+      <img src="https://i.pravatar.cc/400/200?u=omp" alt="One Man Productions cover">
+      <div class="proj-info">
+        <h3>One Man Productions</h3>
+        <p>My Facebook page where I showcase video-editing works, short films, and creative content.</p>
+        <div class="tech">Editor • Content Creator • Storyteller</div>
+        <a class="btn" href="https://www.facebook.com/OneManProductions" target="_blank">Visit Page <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <img src="https://i.pravatar.cc/400/200?u=tipid" alt="TipidTechs cover">
+      <div class="proj-info">
+        <h3>TipidTechs</h3>
+        <p>My online shop for affordable, quality gadgets and tech accessories.</p>
+        <div class="tech">Entrepreneur • Sales • Customer Support</div>
+        <a class="btn" href="https://www.facebook.com/TipidTechs" target="_blank">Visit Shop <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <div class="card">
+    <form>
+      <input placeholder="Your Name">
+      <input placeholder="Your Email">
+      <textarea rows="4" placeholder="Message"></textarea>
+      <button class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2025 Carlos Miguel Aldamia
+</footer>
+
+<script>
+const toggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+
+// init
+if(localStorage.getItem('theme')==='light') html.setAttribute('data-theme','light');
+
+toggle.addEventListener('click',()=>{
+  const current = html.getAttribute('data-theme');
+  const next = current==='light' ? 'dark' : 'light';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+});
+</script>
+
+</body>
+</html>
